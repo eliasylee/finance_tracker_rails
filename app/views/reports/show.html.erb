@@ -1,0 +1,25 @@
+<h1><%= @report.name %></h1>
+
+<h3> New Transaction </h3>
+<% render "transactions/form", transaction: Transaction.new %>
+
+<table>
+  <% @report.transactions.each do |transaction| %>
+    <tr>
+      <td>transaction.transaction_date</td>
+      <td>transaction.location</td>
+      <td>transaction.item</td>
+      <td>transaction.cost</td>
+      <td>
+        <%= button_to "Edit", edit_transaction_url(transaction.id), method: :get %>
+      </td>
+    </tr>
+  <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td>Total:</td>
+      <td><%=@report.transactions.cost.inject(:+)%></td>
+    </tr>
+</table>
+<% end %>

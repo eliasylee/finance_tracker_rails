@@ -1,0 +1,38 @@
+<% action = transaction.persisted? ? transaction_url(transaction) : transactions_url %>
+<% method = transaction.persisted? ? "PATCH" : "POST" %>
+<% value = transaction.persisted? ? "Edit Transaction" : "Submit Transaction" %>
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= auth_token %>
+
+  <label>
+    Date
+    <input type="date"
+           name="transaction[date]"
+           value="<%= transaction.date %>">
+  </label>
+
+  <label>
+    Location
+    <input type="text"
+           name="transaction[location]"
+           value="<%= transaction.location %>">
+  </label>
+
+  <label>
+    Item
+    <input type="text"
+           name="transaction[item]"
+           value="<%= transaction.item %>">
+  </label>
+
+  <label>
+    Cost
+    <input type="number"
+           name="transaction[cost]"
+           value="<%= transaction.cost %>">
+  </label>
+  
+  <input type="submit" value="<%= value %>">
+</form>

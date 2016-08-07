@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FinanceTracker</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<a href="<%= homepage_index_url %>"><font color="blue" size="50" >FinanceTracker</font></a>
+<h4>Your Personal Finance Helper</h4>
+
+<% if current_user %>
+  <h3>Hi, <%= current_user.username %>!</h3>
+  <%= button_to "Log Out", session_url, method: :delete %>
+<% end %>
+
+<% flash[:errors] ||= [] %>
+<% unless flash[:errors].empty? %>
+  <h1>Error:</h1>
+  <% flash[:errors].each do |error| %>
+    <%= error %>
+  <% end %>
+<% end %>
+
+<%= yield %>
+
+</body>
+</html>
