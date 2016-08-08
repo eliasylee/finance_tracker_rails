@@ -16,6 +16,8 @@
   <%= button_to "Log Out", session_url, method: :delete %>
 <% end %>
 
+<br>
+
 <% flash[:errors] ||= [] %>
 <% unless flash[:errors].empty? %>
   <h1>Error:</h1>

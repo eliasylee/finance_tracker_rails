@@ -1,0 +1,17 @@
+<% action = report.persisted? ? report_url(report.id) : reports_url %>
+<% method = report.persisted? ? "PATCH" : "POST" %>
+<% value = report.persisted? ? "Edit Report" : "Submit New Report" %>
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= auth_token %>
+
+  <label>
+    Name:
+    <input type="text"
+           name="report[name]"
+           value="<%= report.name %>">
+  </label>
+
+  <input type="submit" value="<%= value %>">
+</form>

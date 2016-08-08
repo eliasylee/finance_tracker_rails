@@ -1,3 +1,10 @@
+<%= render 'reports/form', report: Report.new %>
+
 <h2>What report would you like to see?</h2>
 
-<% @user. %>
+<ul>
+  <% @user.reports.each do |report| %>
+    <% @report = report %>
+    <li><%= link_to report.name, report_url(@report.id) %></li>
+  <% end %>
+</ul>

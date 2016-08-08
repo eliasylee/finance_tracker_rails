@@ -4,10 +4,10 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new(transaction_params)
 
     if @transaction.save
-      redirect_to report_url(@transaction.report)
+      redirect_to report_url(@transaction.report_id)
     else
       flash.now[:errors] = @transaction.errors.full_messages
-      redirect_to report_url(@transaction.report)
+      redirect_to report_url(@transaction.report_id)
     end
   end
 
@@ -19,7 +19,7 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.find(params[:id])
 
     if @transaction.update(transaction_params)
-      redirect_to report_url(@transaction.report)
+      redirect_to report_url(@transaction.report_id)
     else
       flash.now[:errors] = @transaction.errors.full_messages
       render :edit

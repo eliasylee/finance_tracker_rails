@@ -1,4 +1,4 @@
-<% action = transaction.persisted? ? transaction_url(transaction) : transactions_url %>
+<% action = transaction.persisted? ? transaction_url(transaction.id) : transactions_url %>
 <% method = transaction.persisted? ? "PATCH" : "POST" %>
 <% value = transaction.persisted? ? "Edit Transaction" : "Submit Transaction" %>
 
@@ -7,10 +7,17 @@
   <%= auth_token %>
 
   <label>
+    <input type="hidden"
+           name="transaction[report_id]"
+           value="<%= report.id %>">
+  </label>
+
+
+  <label>
     Date
     <input type="date"
-           name="transaction[date]"
-           value="<%= transaction.date %>">
+           name="transaction[transaction_date]"
+           value="<%= transaction.transaction_date %>">
   </label>
 
   <label>
@@ -33,6 +40,6 @@
            name="transaction[cost]"
            value="<%= transaction.cost %>">
   </label>
-  
+
   <input type="submit" value="<%= value %>">
 </form>

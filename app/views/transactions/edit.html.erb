@@ -1,3 +1,5 @@
 <h1>Edit Transaction</h1>
 
-<% render "form", transaction: transaction %>
+<% @transaction = Transaction.find(params[:id]) %>
+
+<%= render "form", transaction: @transaction, report: @transaction.report %>

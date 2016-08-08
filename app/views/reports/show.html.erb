@@ -1,15 +1,30 @@
+<%= button_to "Back to Reports", user_url(current_user.id), method: :get %>
+
 <h1><%= @report.name %></h1>
 
+<%= button_to "Edit Report", edit_report_url(@report), method: :get %>
+
 <h3> New Transaction </h3>
-<% render "transactions/form", transaction: Transaction.new %>
+<%= render "transactions/form", transaction: Transaction.new, report: @report %>
+
+<h3>Transactions:</h3>
 
 <table>
+  <% total_cost = 0 %>
+  <tr>
+    <td>Date</td>
+    <td>Location</td>
+    <td>Item</td>
+    <td>Cost</td>
+    <td></td>
+  </tr>
   <% @report.transactions.each do |transaction| %>
+    <% total_cost += transaction.cost %>
     <tr>
-      <td>transaction.transaction_date</td>
-      <td>transaction.location</td>
-      <td>transaction.item</td>
-      <td>transaction.cost</td>
+      <td><%= transaction.transaction_date %></td>
+      <td><%= transaction.location %></td>
+      <td><%= transaction.item %></td>
+      <td><%= transaction.cost %></td>
       <td>
         <%= button_to "Edit", edit_transaction_url(transaction.id), method: :get %>
       </td>
@@ -19,7 +34,6 @@
       <td></td>
       <td></td>
       <td>Total:</td>
-      <td><%=@report.transactions.cost.inject(:+)%></td>
+      <td><%= total_cost %></td>
     </tr>
 </table>
-<% end %>
