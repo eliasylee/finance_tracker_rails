@@ -2,9 +2,12 @@
 
 <h2>What report would you like to see?</h2>
 
-<ul>
+<table>
   <% @user.reports.each do |report| %>
     <% @report = report %>
-    <li><%= link_to report.name, report_url(@report.id) %></li>
+      <tr>
+        <td><%= link_to report.name, report_url(@report) %></td>
+        <td><%= button_to "Delete", report_url(@report), method: :delete %></td>
+      </tr>
   <% end %>
-</ul>
+</table>

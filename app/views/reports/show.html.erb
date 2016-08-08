@@ -17,6 +17,7 @@
     <td>Item</td>
     <td>Cost</td>
     <td></td>
+    <td></td>
   </tr>
   <% transactions = @report.transactions.sort_by { |trans| trans.transaction_date }.reverse %>
   <% transactions.each do |transaction| %>
@@ -27,7 +28,10 @@
       <td><%= transaction.item %></td>
       <td><%= transaction.cost %></td>
       <td>
-        <%= button_to "Edit", edit_transaction_url(transaction.id), method: :get %>
+        <%= button_to "Edit", edit_transaction_url(transaction), method: :get %>
+      </td>
+      <td>
+        <%= button_to "Delete", transaction_url(transaction), method: :delete %>
       </td>
     </tr>
   <% end %>
