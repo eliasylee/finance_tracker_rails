@@ -18,7 +18,8 @@
     <td>Cost</td>
     <td></td>
   </tr>
-  <% @report.transactions.each do |transaction| %>
+  <% transactions = @report.transactions.sort_by { |trans| trans.transaction_date }.reverse %>
+  <% transactions.each do |transaction| %>
     <% total_cost += transaction.cost %>
     <tr>
       <td><%= transaction.transaction_date %></td>
